@@ -1,8 +1,11 @@
 export interface ICar {
-  id: number;
+  id?: number;
   cost: number;
   title: string;
   picture: string;
 }
 
-export type ICars = ICar[];
+export interface ICars {
+  cars: ICar[];
+}
+

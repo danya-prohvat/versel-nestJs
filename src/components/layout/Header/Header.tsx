@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Parson } from "@/components/common/Person/Person";
 
-export const Header: FC = ({ session }: { session: any }) => {
+export const Header: FC<{session:any}> = ({ session }) => {
   return (
     <div className={styles.nav}>
       <Link href="/">
