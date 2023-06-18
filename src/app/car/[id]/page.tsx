@@ -4,20 +4,17 @@ import { getServerSession } from "next-auth";
 import { Layout } from "@/components/layout/Layout/Layout";
 import { redirect } from "next/navigation";
 import { NextPage } from "next";
+import { CarItem } from "@/components/common/CarItem/CarItem";
 
-const HomePage: NextPage = async () => {
-  const session = await getServerSession(authConfig);
-
-  if (!session) redirect("/api/auth/signin");
-
-  const res = await fetch("http://localhost:8080/api/getCars");
-  const cars = await res.json();
+const Car: NextPage = async ({params}) => {
+  const res = await fetch(`http://localhost:8080/api/getCar?id=${params.id}`);
+  const car = await res.json();
 
   return (
     <Layout>
-      <Home cars={cars} />
+      <CarItem picture={car.picture} cost={car.cost} title={car.title} />
     </Layout>
   );
 };
 
-export default HomePage;
+export default Car;
